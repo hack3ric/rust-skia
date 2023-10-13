@@ -300,7 +300,7 @@ pub fn configure_skia(
 
     println!("Skia args: {}", &gn_args);
 
-    let output = Command::new(gn_command)
+    let output = Command::new(dbg!(gn_command))
         .args([
             "gen",
             config.output_directory.to_str().unwrap(),
@@ -308,7 +308,7 @@ pub fn configure_skia(
             &format!("--args={gn_args}"),
         ])
         .envs(env::vars())
-        .current_dir(&build.skia_source_dir)
+        .current_dir(dbg!(&build.skia_source_dir))
         .stdout(Stdio::inherit())
         .stderr(Stdio::inherit())
         .output()
